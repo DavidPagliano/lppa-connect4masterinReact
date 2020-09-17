@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import SingIn from './screens/SignIn'
+import Products from './screens/Products'
+import Home from './screens/Home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component() {
+
+  constructor(pros){
+    super(pros)
+    this.state ={screens: 'Home'} 
+  }
+
+  render(){
+    return (
+      <div className="App">
+          <ul className="Menu">
+            <li onClick={() => this.setState({screens: 'singin'})}> SingIn</li>
+            <li onClick={() => this.setState({screens: 'products'})}>Products</li>
+            <li onClick={() => this.setState({screens: 'home'})}>Home</li>
+          </ul>
+          APP: {this.state.screens}
+          {this.state.screens === 'singin' ? <SingIn/>:null}
+          {this.state.screens === 'products' ? <Products/>:null}
+          {this.state.screens === 'home' ? <Home/>:null}
+      </div>
+    );
+  }
+
+  
 }
 
 export default App;
